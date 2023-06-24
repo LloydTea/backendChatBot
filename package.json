@@ -1,0 +1,35 @@
+{
+  "name": "ai-faq-chat",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=development ./node_modules/.bin/netlify-lambda serve src",
+    "build": "NODE_ENV=production ./node_modules/.bin/netlify-lambda build src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "netlify-cli": "^15.6.0",
+    "netlify-lambda": "^2.0.16",
+    "openai": "^3.2.1",
+    "serverless-http": "^3.2.0"
+  },
+  "devDependencies": {
+    "cors": "^2.8.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LloydTea/AI-ChatBot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LloydTea/AI-ChatBot/issues"
+  },
+  "homepage": "https://github.com/LloydTea/AI-ChatBot#readme",
+  "description": ""
+}
