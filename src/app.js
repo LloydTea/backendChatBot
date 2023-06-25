@@ -21,7 +21,6 @@ app.use(bodyParser.json());
 
 // Routers
 const router = require("../routes/messageRouter");
-const { env } = require("process");
 
 app.use("/", router.router);
 
