@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 // Routers
 const router = require("../routes/messageRouter");
 
-app.use("/.netlify/functions/app", router.router);
+app.use("/", router.router);
 
 // app.listen(PORT, () => console.log(`It's Alive on http://localhost:${PORT}`));
 
