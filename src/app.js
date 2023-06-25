@@ -8,7 +8,7 @@ config();
 // const PORT = process.env.PORT;
 
 const corsOptions = {
-  origin: "*",
+  origin: process.env.origin,
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
@@ -21,6 +21,7 @@ app.use(bodyParser.json());
 
 // Routers
 const router = require("../routes/messageRouter");
+const { env } = require("process");
 
 app.use("/", router.router);
 

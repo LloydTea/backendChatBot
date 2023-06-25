@@ -11,9 +11,9 @@ router.get("/", (req, res) => {
 });
 
 router.get("/test", (req, res) => {
-  res.json({
-    hello: "test!",
+    res.json({
+      hello: "test!",
+    });
   });
-});
 
 module.exports = { router };
