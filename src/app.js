@@ -5,9 +5,12 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 config();
-
+const allowedOrigins = [
+  "https://frontendchatbot.netlify.app",
+  "http://ai.615nashlaw.com",
+];
 // Enable CORS middleware
-app.use(cors({ origin: process.env.ORIGIN }));
+app.use(cors({ origin: allowedOrigins }));
 
 // app.use(cors(corsOptions));
 
