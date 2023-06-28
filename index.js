@@ -1,7 +1,5 @@
 const { config } = require("dotenv");
 const { Configuration, OpenAIApi } = require("openai");
-const readline = require("readline");
-const fs = require("fs");
 config();
 
 const openai = new OpenAIApi(
@@ -35,7 +33,7 @@ async function sendToAI(message) {
 }
 
 const getMessage = async (req, res) => {
-  const { message, sessionId } = req.body;
+  const { message } = req.body;
   try {
     const response = await sendToAI(message);
     res.status(200).send({
