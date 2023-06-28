@@ -2,12 +2,12 @@ const { config } = require("dotenv");
 const app = require("express")();
 const serverless = require("serverless-http");
 const bodyParser = require("body-parser");
-// const cors = require("cors");
+const cors = require("cors");
 
 config();
 
 // Enable CORS middleware
-// app.use(cors({ origin: "*" }));
+app.use(cors({ origin: process.env.ORIGIN }));
 
 // app.use(cors(corsOptions));
 
