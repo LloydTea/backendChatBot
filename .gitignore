@@ -3,3 +3,11 @@ node_modules/
 functions/
 # Local Netlify folder
 .netlify
+.aws-sam/
+Dockerfile
+serverless.yml
+samconfig.toml
+compose.yaml
+compose-dev.yaml
+template.yml
+.dockerignore

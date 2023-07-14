@@ -7,7 +7,7 @@ router.post("/report", generateResponse.generateReport);
 
 router.get("/test", (req, res) => {
   res.json({
-    hello: "test!",
+    hello: "Hello World!",
   });
 });
 
