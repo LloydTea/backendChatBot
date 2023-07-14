@@ -1,6 +1,5 @@
 const { config } = require("dotenv");
 const express = require("express");
-const serverless = require("serverless-http");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
