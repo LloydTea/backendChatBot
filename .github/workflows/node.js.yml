@@ -42,4 +42,4 @@ jobs:
           EOF
 
           echo ".env file created successfully."
-    #   - run: pm2 restart ChatBotServer
+      - run: sudo pm2 restart chatserver

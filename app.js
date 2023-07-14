@@ -30,6 +30,3 @@ app.use("/", router.router);
 app.listen(process.env.PORT, () => {
   console.log(`Server started on port ${process.env.PORT}`);
 });
-
-// Define the handler function for AWS Lambda
-exports.handler = serverless(app);
