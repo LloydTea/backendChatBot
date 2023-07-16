@@ -2,6 +2,7 @@ const { config } = require("dotenv");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const https = require("https");
 
 config();
 
@@ -15,7 +16,7 @@ const allowedOrigins = [
 
 // Enable CORS middleware
 app.use(cors(allowedOrigins));
-app.options("*", cors());
+// app.options("*", cors());
 
 // Configure body-parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));

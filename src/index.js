@@ -19,39 +19,35 @@ Given the information you have provided, I recommend that you book a call with a
 
 async function sendToAI(message) {
   conversationHistory.push({ role: "user", content: message });
-  let retries = 0;
-  while (retries < 3) {
-    try {
-      console.log(`Retrying... (AI) Attempt ${retries}`);
-      let response = await openai.createChatCompletion({
-        model: "gpt-3.5-turbo",
-        messages: [
-          {
-            role: "system",
-            content: `You're a helpful assistant, You are to review users input, ask important questions in form of conversation that will help you determine if the user has a valid personal injury and is owed a compensation for injury incured. And finaly generate a report similar to ${reportModel}. Also casually add section of the law that supports the report you're generating. Do not respond to anything not regarding to personal injury`,
-          },
-          ...conversationHistory,
-        ],
-      });
-      console.log(response.data);
-      return response.data.choices[0].message.content;
-    } catch (error) {
-      console.log(error);
-      retries++;
-      console.log(`Retrying... Attempt ${retries}`);
-      return error.message;
-    }
+  try {
+    let response = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [
+        {
+          role: "system",
+          content: `You're a helpful assistant, You are to review users input, ask important questions in form of conversation that will help you determine if the user has a valid personal injury and is owed a compensation for injury incured. And finaly generate a report similar to ${reportModel}. Also casually add section of the law that supports the report you're generating. Do not respond to anything not regarding to personal injury`,
+        },
+        ...conversationHistory,
+      ],
+    });
+    console.log(response.data.choices[0].message.content);
+    return response.data.choices[0].message.content;
+  } catch (error) {
+    console.log(error);
+    return error.message;
   }
-  throw new Error("Request failed after multiple retries");
 }
 
 const getMessage = async (req, res) => {
   const { message } = req.body;
+
   console.log(`Message From User: ${message}`);
-  updateGHL(`Message From User: ${message}`);
+  // updateGHL(`Message From User: ${message}`);
+
   const aiMessage = await sendToAI(message);
+
   console.log(`Message From User: ${aiMessage}`);
-  updateGHL(`Message From AI: ${aiMessage}`);
+  // updateGHL(`Message From AI: ${aiMessage}`);
   try {
     res.status(200).send({
       message: aiMessage,
