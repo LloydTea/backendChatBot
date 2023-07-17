@@ -50,12 +50,12 @@ const getMessage = async (req, res) => {
   const { message } = req.body;
 
   console.log(`Message From User: ${message}`);
-  // updateGHL(`Message From User: ${message}`);
+  updateGHL(`Message From User: ${message}`);
 
   const aiMessage = await sendToAI(message);
 
   console.log(`Message From User: ${aiMessage}`);
-  // updateGHL(`Message From AI: ${aiMessage}`);
+  updateGHL(`Message From AI: ${aiMessage}`);
   try {
     res.status(200).send({
       message: aiMessage,
@@ -91,33 +91,55 @@ const generateReport = async (req, res) => {
   }
 };
 
-const updateGHL = (message) => {
+const updateGHL = async (message) => {
+  //Function To Send New Message To GHL CRM
   chathistory +=
     message +
     `\n ----------------------------------------------------------------------- \n`;
-  var config = {
-    method: "post",
-    maxBodyLength: Infinity,
-    url: "https://rest.gohighlevel.com/v1/contacts/",
-    headers: {
-      Authorization: `Bearer ${process.env.Authorization}`,
-    },
-    data: {
-      email: sendToAI,
-      customField: { mzbzDzrAEkJQRg27y2Vt: chathistory },
-    },
+  const data = {
+    email: senderId,
+    customField: { mzbzDzrAEkJQRg27y2Vt: chathistory },
   };
-
-  axios(config)
-    .then(function (response) {
-      res.status(200).send({
-        message: responseMessage,
+  try {
+    axios
+      .post(`https://rest.gohighlevel.com/v1/contacts/`, data, {
+        headers: {
+          Authorization: `Bearer ${process.env.Authorization}`,
+          "Content-Type": "application/json",
+        },
+      })
+      .then(function (responding) {
+        console.log("Message Successfully Updated");
       });
-      console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+  } catch (error) {
+    console.log(error);
+  }
+  // chathistory +=
+  //   message +
+  //   `\n ----------------------------------------------------------------------- \n`;
+  // var config = {
+  //   method: "post",
+  //   maxBodyLength: Infinity,
+  //   url: "https://rest.gohighlevel.com/v1/contacts/",
+  //   headers: {
+  //     Authorization: `Bearer ${process.env.Authorization}`,
+  //   },
+  //   data: {
+  //     email: senderId,
+  //     customField: { mzbzDzrAEkJQRg27y2Vt: chathistory },
+  //   },
+  // };
+
+  // axios(config)
+  //   .then(function (response) {
+  //     res.status(200).send({
+  //       message: responseMessage,
+  //     });
+  //     console.log(JSON.stringify(response.data));
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   });
 };
 
 module.exports = { getMessage, generateReport };
