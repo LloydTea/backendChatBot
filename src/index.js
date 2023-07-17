@@ -114,32 +114,6 @@ const updateGHL = async (message) => {
   } catch (error) {
     console.log(error);
   }
-  // chathistory +=
-  //   message +
-  //   `\n ----------------------------------------------------------------------- \n`;
-  // var config = {
-  //   method: "post",
-  //   maxBodyLength: Infinity,
-  //   url: "https://rest.gohighlevel.com/v1/contacts/",
-  //   headers: {
-  //     Authorization: `Bearer ${process.env.Authorization}`,
-  //   },
-  //   data: {
-  //     email: senderId,
-  //     customField: { mzbzDzrAEkJQRg27y2Vt: chathistory },
-  //   },
-  // };
-
-  // axios(config)
-  //   .then(function (response) {
-  //     res.status(200).send({
-  //       message: responseMessage,
-  //     });
-  //     console.log(JSON.stringify(response.data));
-  //   })
-  //   .catch(function (error) {
-  //     console.log(error);
-  //   });
 };
 
 module.exports = { getMessage, generateReport };
